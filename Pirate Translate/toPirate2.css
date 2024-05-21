@@ -1,0 +1,111 @@
+/* Importing the font */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: 'Pirata One', cursive; /* Applying the pirate-themed font */
+    color: #FFD700; /* Gold color for text */
+    min-height: 100vh;
+    background: url('pirateship.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    padding: 20px;
+}
+
+/* Overlay for better text readability */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Content styles to ensure readability */
+
+
+
+/* Heading styles */
+h3 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Image styles */
+img {
+    width: 400px;
+    border: .1px solid #8B4513; /* Dark brown border */
+    padding: 0.1em;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+p {
+  font-size: 30px;
+  text-align: center;
+}
+
+/* Button styles */
+button {
+    font-family: 'Pirata One', cursive; /* Pirate-themed font */
+    font-size: 24px;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    background: url('wood.jpg'); /* Wooden texture */
+    background-size: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px #000; /* Text shadow for better readability */
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Textarea styles */
+textarea {
+    font-family: 'Pirata One', cursive; /* Pirate-themed font */
+    font-size: 30px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #8B4513;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    background: #F5DEB3; /* Light brown background */
+}
+
+/* Table styles */
+table {
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+td {
+    font-size: 30px;
+    color: #000000; /* Gold color for table cells */
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #8B4513;
+    background: #F5DEB3; /* Light brown background */
+    text-align: center;
+}
