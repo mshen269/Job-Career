@@ -7,7 +7,6 @@
 
 body {
     font-family: 'Arial', sans-serif;
-
     background-color: #B8B8B8;
     color: #333;
     line-height: 1.6;
@@ -120,27 +119,27 @@ h1 {
   color: #000000;
 }
 
-h2, h3 {
+h2, h3, h4 {
     color: #0A74DA;
     margin-bottom: 1rem;
     font-weight: bold;
 }
 
-h4 {
-  font-weight: bold;
-  margin: 1rem auto;
 
-}
 
 p, ul {
     margin-bottom: 1.5rem;
 }
 
-.contact,.project, .experience, .testimonial {
+.contacts, .educations, .project, .experiences, .abouts {
     background-color: #eef4fc;
     padding: 1rem;
     border-radius: 10px;
     margin-bottom: 1rem;
+}
+
+.contacts {
+  font-weight: bold;
 }
 
 .project a, .experience a {
