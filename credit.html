@@ -3,205 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudoku Solver</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Credit Card Approval</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
-            margin: 50px;
-            padding: 50px;
-            font-family: Arial, sans-serif;
+            margin: 0;
         }
-
         .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-
-        #sudokuCanvas {
-            border: 2px solid #000;
+        h1 {
             margin-bottom: 20px;
         }
-
-        .controls {
-            margin-bottom: 10px;
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-
         button {
             padding: 10px 20px;
-            margin: 5px;
+            margin: 10px;
             font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: #fff;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Sudoku Solver</h1>
-        <canvas id="sudokuCanvas" width="540" height="540"></canvas>
-        <div class="controls">
-            <button id="solveButton">Solve</button>
-            <button id="refreshButton">Refresh</button>
-        </div>
-        <p>Press "Solve" to solve the Sudoku. Press "Refresh" for a new puzzle!</p>
+        <h1>Credit Card Approval</h1>
+        <input type="text" id="name" placeholder="Name">
+        <input type="number" id="age" placeholder="Age">
+        <input type="number" id="income" placeholder="Monthly Income">
+        <input type="number" id="debt" placeholder="Total Debt">
+        <input type="number" id="creditScore" placeholder="Credit Score">
+        <button onclick="checkApproval()">Check Approval</button>
+        <div class="result" id="result"></div>
+        <p class="disclaimer">Disclaimer: This is a simulation. Do not enter real information.</p>
     </div>
     <script>
-        const canvas = document.getElementById('sudokuCanvas');
-        const context = canvas.getContext('2d');
-        const size = 60;
-        let board = generateSudoku();
+        function checkApproval() {
+            const name = document.getElementById('name').value;
+            const age = parseInt(document.getElementById('age').value);
+            const income = parseFloat(document.getElementById('income').value);
+            const debt = parseFloat(document.getElementById('debt').value);
+            const creditScore = parseInt(document.getElementById('creditScore').value);
+            const resultDiv = document.getElementById('result');
 
-        document.getElementById('solveButton').addEventListener('click', () => solveAndDisplay(board));
-        document.getElementById('refreshButton').addEventListener('click', () => {
-            board = generateSudoku();
-            updateDisplay(board);
-        });
+            // Calculate debt-to-income ratio
+            const dti = debt / income;
 
-        function drawGrid() {
-            for (let i = 0; i <= 9; i++) {
-                const lineWidth = i % 3 === 0 ? 3 : 1;
-                context.beginPath();
-                context.moveTo(0, i * size);
-                context.lineTo(canvas.width, i * size);
-                context.lineWidth = lineWidth;
-                context.stroke();
+            let message = `Hello ${name}, `;
+            let approved = true;
 
-                context.beginPath();
-                context.moveTo(i * size, 0);
-                context.lineTo(i * size, canvas.height);
-                context.lineWidth = lineWidth;
-                context.stroke();
+            if (age < 18) {
+                message += "you must be at least 18 years old to apply for a credit card.";
+                approved = false;
+            } else if (creditScore < 600) {
+                message += "your credit score is too low.";
+                approved = false;
+            } else if (dti > 0.4) {
+                message += "your debt-to-income ratio is too high.";
+                approved = false;
             }
-        }
 
-        function drawNumbers(board) {
-            context.font = '24px Arial';
-            context.fillStyle = 'blue';
-            context.textAlign = 'center';
-            context.textBaseline = 'middle';
-
-            for (let i = 0; i < 9; i++) {
-                for (let j = 0; j < 9; j++) {
-                    if (board[i][j] !== 0) {
-                        context.fillText(board[i][j], j * size + size / 2, i * size + size / 2);
-                    }
-                }
-            }
-        }
-
-        function updateDisplay(board) {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            drawGrid();
-            drawNumbers(board);
-        }
-
-        function generateSudoku() {
-            const board = Array.from({ length: 9 }, () => Array(9).fill(0));
-            fillDiagonalBoxes(board);
-            solveSudoku(board);
-            removeElements(board, 20);
-            return board;
-        }
-
-        function fillDiagonalBoxes(board) {
-            for (let i = 0; i < 9; i += 3) {
-                fillBox(board, i, i);
-            }
-        }
-
-        function fillBox(board, row, col) {
-            const nums = shuffle(Array.from({ length: 9 }, (_, i) => i + 1));
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    board[row + i][col + j] = nums.pop();
-                }
-            }
-        }
-
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        function removeElements(board, count) {
-            while (count > 0) {
-                const row = Math.floor(Math.random() * 9);
-                const col = Math.floor(Math.random() * 9);
-                if (board[row][col] !== 0) {
-                    board[row][col] = 0;
-                    count--;
-                }
-            }
-        }
-
-        function solveAndDisplay(board) {
-            const boardCopy = board.map(row => row.slice());
-            if (solveSudoku(boardCopy)) {
-                updateDisplay(boardCopy);
+            if (approved) {
+                message += "congratulations! Your application is approved.";
             } else {
-                alert('No solution exists for the provided Sudoku.');
-            }
-        }
-
-        function solveSudoku(board) {
-            const emptyPos = findEmptyPosition(board);
-            if (!emptyPos) {
-                return true;
+                message += "sorry, your application is denied.";
             }
 
-            const [row, col] = emptyPos;
-            for (let num = 1; num <= 9; num++) {
-                if (isValid(board, row, col, num)) {
-                    board[row][col] = num;
-                    if (solveSudoku(board)) {
-                        return true;
-                    }
-                    board[row][col] = 0;
-                }
-            }
-            return false;
+            resultDiv.textContent = message;
         }
-
-        function findEmptyPosition(board) {
-            for (let i = 0; i < 9; i++) {
-                for (let j = 0; j < 9; j++) {
-                    if (board[i][j] === 0) {
-                        return [i, j];
-                    }
-                }
-            }
-            return null;
-        }
-
-        function isValid(board, row, col, num) {
-            return !isInRow(board, row, num) && !isInCol(board, col, num) && !isInBox(board, row - row % 3, col - col % 3, num);
-        }
-
-        function isInRow(board, row, num) {
-            return board[row].includes(num);
-        }
-
-        function isInCol(board, col, num) {
-            return board.some(row => row[col] === num);
-        }
-
-        function isInBox(board, boxStartRow, boxStartCol, num) {
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    if (board[boxStartRow + i][boxStartCol + j] === num) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        updateDisplay(board);
     </script>
 </body>
 </html>
+
