@@ -195,3 +195,17 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+img {
+    width: 200px;
+    border: .1px solid #8B4513; /* Dark brown border */
+    padding: 0.1em;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
