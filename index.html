@@ -23,7 +23,7 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="resume.pdf.pdf" target="_blank">Download Resume</a></li>
+                <li><a href="resumeofficial.pdf.pdf" target="_blank">Download Resume</a></li>
             </ul>
         </nav>
         <span class="type-it" style="font-size: 50px;"></span>
@@ -39,7 +39,8 @@
         <p> As times are changing, I seek to adapt to any industrial environment that I am in. Throughout my professional journey, I have demonstrated a remarkable ability to adapt to various job industries.
           My career has equipped me with robust analytical and financial skills, while my ventures into mobile development,
           full-stack development, and technology enthusiasm showcase my versatility and continuous learning mindset. I thrive in
-           dynamic environments and possess a keen ability to quickly acquire new skills, regardless of the industry. <p>
+           dynamic environments and possess a keen ability to quickly acquire new skills, regardless of the industry <p>
+               <img src="me.jpg" alt="Me" class="center"/>
           </div>
     </section>
 
@@ -53,11 +54,11 @@
         <div class="project">
             <h3>Pirate Translator using JavaScript</h3>
             <p>An interactive web application that translates English phrases to pirate speak. This project highlights my abilities in JavaScript, CSS, and HTML.</p>
-            <a href="Pirate Translate/index.html">View Project</a>
+            <a href="Pirate Translate/toPirate2.html">View Project</a>
         </div>
         <div class="project">
             <h3>Credit Card Approval Simulation</h3>
-            <p>Demonstrating financial knowledge for credit approval while applying Python skills.</p>
+            <p>Demonstrating financial knowledge for credit approval while applying JavaScript skills.</p>
             <a href="credit.html">View Project</a>
         </div>
     </section>
@@ -70,6 +71,8 @@
         <li>Created the 24 hour loan reception program enabling over 300 clients to receive funds faster.</li>
         <li>Outstanding QC audit score of over 95% through attention to detail to authorize twice the loans.</li>
         <li>Received over 50 counts of recognition for outstanding underwriting performance</li>
+        <p></p>
+        <img src="usb.jpg" alt="USB" class="center"/>
         <div>
     </section>
 
@@ -79,6 +82,8 @@
         <h4>University of Oregon (2017-2021)</h4>
         <li>Major in Finance</li>
         <li>Minor in Economics</li>
+        <p></p>
+        <img src="uo.jpg" alt="UO" class="center"/>
       </div>
     </section>
 
@@ -118,15 +123,25 @@
           });
         </script>
 
-   <script>
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navList = document.querySelector('.nav-list');
+<script>
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
 
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navList.classList.toggle('active');
-        });
-    </script>
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                navList.classList.toggle('active');
+            });
+
+            // Close the menu when a link is clicked
+            document.querySelectorAll('.nav-list li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navList.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+</script>
+
 
 </body>
 </html>
+
